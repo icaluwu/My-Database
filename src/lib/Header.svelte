@@ -5,28 +5,32 @@
   function toggleMenu() {
     menuOpen = !menuOpen;
   }
+
+  function closeMenu() {
+    menuOpen = false;
+  }
 </script>
 
 <svelte:window bind:scrollY={y} />
 
-<header class:scrolled={y > 0}>
+<header class:scrolled={y > 0 || menuOpen}>
   <div class="header-container">
     <div class="logo">
-      <a href="/">ICAL</a>
+      <a href="/" on:click={closeMenu}>ICAL</a>
     </div>
-    <button class="hamburger" on:click={toggleMenu} aria-label="Toggle menu">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <line x1="3" y1="18" x2="21" y2="18"></line>
-      </svg>
+
+    <button class="hamburger" on:click={toggleMenu} aria-label="Toggle menu" class:open={menuOpen}>
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
     </button>
+
     <nav class:open={menuOpen}>
-      <a href="#about" on:click={() => menuOpen = false}>About</a>
-      <a href="#experience" on:click={() => menuOpen = false}>Experience</a>
-      <a href="#projects" on:click={() => menuOpen = false}>Projects</a>
-      <a href="#certifications" on:click={() => menuOpen = false}>Certifications</a>
-      <a href="#volunteering" on:click={() => menuOpen = false}>Volunteering</a>
+      <a href="#about" on:click={closeMenu}>About</a>
+      <a href="#experience" on:click={closeMenu}>Experience</a>
+      <a href="#projects" on:click={closeMenu}>Projects</a>
+      <a href="#certifications" on:click={closeMenu}>Certifications</a>
+      <a href="#volunteering" on:click={closeMenu}>Volunteering</a>
       <div class="social-links-mobile">
         <a href="https://github.com/icaluwu" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
@@ -36,8 +40,9 @@
         </a>
       </div>
     </nav>
+
     <div class="social-links-desktop">
-      <a href="https://github.com/icaluwu" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+       <a href="https://github.com/icaluwu" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
       </a>
       <a href="https://www.linkedin.com/in/icaluwu" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
@@ -55,13 +60,14 @@
     right: 0;
     padding: 1rem 2rem;
     background-color: transparent;
-    transition: background-color 0.3s ease;
-    z-index: 10;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000;
   }
 
   header.scrolled {
-    background-color: rgba(24, 28, 36, 0.8);
+    background-color: rgba(14, 16, 21, 0.8);
     backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .header-container {
@@ -73,104 +79,164 @@
   }
 
   .logo a {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.8rem;
+    font-weight: 700;
     color: #fff;
     text-decoration: none;
+    letter-spacing: 1px;
   }
 
   .hamburger {
     display: none;
-    background: none;
-    border: none;
     cursor: pointer;
+    background: transparent;
+    border: none;
+    width: 28px;
+    height: 28px;
+    position: relative;
+    z-index: 1001;
     padding: 0;
   }
 
-  .hamburger svg {
-    stroke: #fff;
+  .bar1, .bar2, .bar3 {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px 0;
+    transition: 0.4s;
+    border-radius: 3px;
   }
 
+  .hamburger.open .bar1 {
+    transform: rotate(-45deg) translate(-6px, 6px);
+  }
+
+  .hamburger.open .bar2 {
+    opacity: 0;
+  }
+
+  .hamburger.open .bar3 {
+    transform: rotate(45deg) translate(-7px, -7px);
+  }
+  
   nav {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
+    align-items: center;
+    gap: 2.5rem;
   }
 
   nav a {
-    color: #fff;
+    color: #e0e0e0;
     text-decoration: none;
     font-weight: 500;
+    font-size: 1rem;
     transition: color 0.3s ease;
-    display: flex;
-    align-items: center;
+    position: relative;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #00bfff;
+    transition: width 0.3s ease;
   }
 
   nav a:hover {
-    color: #00bfff;
+    color: #fff;
   }
   
+  nav a:hover::after {
+    width: 100%;
+  }
+
   .social-links-desktop {
     display: flex;
     gap: 1.5rem;
   }
 
   .social-links-desktop a svg {
-    stroke: #fff;
-    transition: stroke 0.3s ease;
+    stroke: #e0e0e0;
+    transition: stroke 0.3s ease, transform 0.3s ease;
   }
 
   .social-links-desktop a:hover svg {
     stroke: #00bfff;
+    transform: scale(1.1);
   }
 
   .social-links-mobile {
     display: none;
   }
 
+  @media (max-width: 992px) {
+    nav {
+      gap: 1.5rem;
+    }
+  }
+
   @media (max-width: 768px) {
     .hamburger {
       display: block;
-      z-index: 11;
     }
 
     nav {
+      display: flex;
       position: fixed;
       top: 0;
-      right: 0;
-      bottom: 0;
-      width: min(75vw, 400px);
+      left: 0;
+      width: 100%;
+      height: 100%;
       flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      padding: 6rem 2rem 2rem;
-      background-color: rgba(24, 28, 36, 0.95);
-      backdrop-filter: blur(10px);
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in-out;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      background-color: rgba(14, 16, 21, 0.98);
+      backdrop-filter: blur(15px);
+      transform: translateY(-100%);
+      transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+      padding: 0;
+      z-index: 1000;
     }
 
     nav.open {
-      transform: translateX(0);
+      transform: translateY(0);
     }
     
+    nav a {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #fff;
+    }
+    
+    nav a::after {
+      display: none;
+    }
+
     .social-links-desktop {
       display: none;
     }
 
     .social-links-mobile {
       display: flex;
-      gap: 1.5rem;
-      margin-top: 2rem;
+      gap: 2.5rem;
+      margin-top: 3rem;
     }
 
     .social-links-mobile a svg {
       stroke: #fff;
-      transition: stroke 0.3s ease;
+      width: 32px;
+      height: 32px;
+      transition: stroke 0.3s ease, transform 0.3s ease;
     }
 
     .social-links-mobile a:hover svg {
       stroke: #00bfff;
+      transform: scale(1.1);
     }
   }
 </style>
