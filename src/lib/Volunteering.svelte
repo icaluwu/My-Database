@@ -1,7 +1,8 @@
 <script lang="ts">
   const volunteering = [
     {
-      role: 'Google Student Ambassador 2025',
+      role: 'Representative of UBSI',
+      event: 'Google Student Ambassador 2025',
     },
     {
       role: 'Event Committee',
