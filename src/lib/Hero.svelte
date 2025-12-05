@@ -1,21 +1,62 @@
+<script lang="ts">
+  // Assuming the video is in public/videos/hero-loop.mp4
+  // If it's in src/assets, the import path needs to be relative
+  // For now, let's use a public path for simplicity.
+  const videoSrc = '/videos/hero-loop.mp4';
+</script>
+
 <div class="hero">
-  <h1>Teuku Vaickal Rizki Irdian</h1>
-  <h2>University Student & Developer</h2>
-  <div class="social-links">
-    <a href="https://github.com/icaluwu" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <a href="https://www.linkedin.com/in/teukuvaickal/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  <video autoplay loop muted playsinline class="hero-video">
+    <source src="{videoSrc}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Teuku Vaickal Rizki Irdian</h1>
+    <h2>University Student & Developer</h2>
+    <div class="social-links">
+      <a href="https://github.com/icaluwu" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/teukuvaickal/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
   </div>
 </div>
 
 <style>
   .hero {
+    position: relative;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
     text-align: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://source.unsplash.com/random/1600x900/?programming,dark') no-repeat center center/cover;
+    overflow: hidden;
+  }
+
+  .hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -2;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(18, 22, 28, 0.7); /* Dark overlay */
+    z-index: -1;
+  }
+
+  .hero-content {
+    z-index: 1;
+    position: relative;
+    color: #fff;
   }
 
   h1 {
