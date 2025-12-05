@@ -19,22 +19,24 @@ This document outlines the plan for creating a personal portfolio website for Te
 
 The application will be structured into the following components:
 
-*   **`Header.svelte`**: A navigation bar that is fixed to the top of the page and smoothly scrolls to the different sections of the portfolio.
-*   **`Hero.svelte`**: A prominent "hero" section at the top of the page with a welcoming message, his name, title, and social media/contact links.
+*   **`Header.svelte`**: A navigation bar that is fixed to the top of the page and smoothly scrolls to the different sections of the portfolio. It includes social media links (GitHub, LinkedIn) with icons.
+*   **`Hero.svelte`**: A prominent "hero" section at the top of the page with a welcoming message, his name, title, and social media links (GitHub, LinkedIn) with icons.
 *   **`About.svelte`**: A section detailing his personal information, specializations, and a brief bio.
 *   **`Experience.svelte`**: A timeline-style component to showcase his professional experience.
 *   **`Projects.svelte`**: A grid or carousel of cards to display his live deployments and GitHub repositories, with links to each.
 *   **`Certifications.svelte`**: A section to list his certifications and licenses, possibly with logos of the issuing institutions.
 *   **`Volunteering.svelte`**: A section to highlight his volunteering experience.
-*   **`Footer.svelte`**: A footer with contact information and copyright details.
+*   **`Footer.svelte`**: A footer with contact information, copyright details, and social media links (GitHub, LinkedIn) with icons.
 *   **`App.svelte`**: The main application component that will assemble all the other components.
 
-## 3. Current Task: Initial Scaffolding
+## 3. Plan for Current Change: Enhance Header, Footer, and Hero
 
-The current plan is to begin by scaffolding the basic structure of the application.
+The goal is to enhance the `Header.svelte`, `Footer.svelte`, and `Hero.svelte` components by adding social media icons and improving the overall structure and styling.
 
-*   **Step 1:** Create the `blueprint.md` file to document the project plan.
-*   **Step 2:** Clean up the existing `src` directory to remove the default boilerplate code.
-*   **Step 3:** Create the new component files within the `src/lib` directory.
-*   **Step 4:** Update `App.svelte` to import and render the new components.
-*   **Step 5:** Add basic styling to `app.css` to set the overall look and feel.
+*   **Step 1:** Modify `Header.svelte` to include GitHub and LinkedIn icons. The icons will be implemented as inline SVGs for better control and performance. The layout will be adjusted to accommodate the new icons, placing them on the right side of the navigation links.
+*   **Step 2:** Add non-inline CSS to `Header.svelte` for styling the icons, including hover effects to improve user interaction.
+*   **Step 3:** Modify `Footer.svelte` to replace the text-based social media links with SVG icons for GitHub and LinkedIn, matching the style of the header.
+*   **Step 4:** Add non-inline CSS to `Footer.svelte` to style the icons and ensure a consistent look and feel with the rest of the application.
+*   **Step 5:** Modify `Hero.svelte` to replace the text-based social media links with SVG icons for GitHub and LinkedIn.
+*   **Step 6:** Add scoped CSS to `Hero.svelte` to style the new icons and ensure they are visually consistent with the rest of the site.
+*   **Step 7:** Update the `blueprint.md` file to reflect these changes.
