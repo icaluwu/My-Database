@@ -13,24 +13,29 @@
 
 <svelte:window bind:scrollY={y} />
 
-<header class:scrolled={y > 0 || menuOpen}>
+<header class:scrolled={y > 0}>
   <div class="header-container">
     <div class="logo">
       <a href="/" on:click={closeMenu}>ICAL</a>
     </div>
 
-    <button class="hamburger" on:click={toggleMenu} aria-label="Toggle menu" class:open={menuOpen}>
-      <div class="bar1"></div>
-      <div class="bar2"></div>
-      <div class="bar3"></div>
+    <button class="hamburger" on:click={toggleMenu} aria-label="Toggle menu">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
     </button>
 
     <nav class:open={menuOpen}>
+      <button class="close-btn" on:click={closeMenu} aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
       <a href="#about" on:click={closeMenu}>About</a>
       <a href="#experience" on:click={closeMenu}>Experience</a>
       <a href="#projects" on:click={closeMenu}>Projects</a>
       <a href="#certifications" on:click={closeMenu}>Certifications</a>
       <a href="#volunteering" on:click={closeMenu}>Volunteering</a>
+      
       <div class="social-links-mobile">
         <a href="https://github.com/icaluwu" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
@@ -98,7 +103,7 @@
     padding: 0;
   }
 
-  .bar1, .bar2, .bar3 {
+  .bar {
     display: block;
     width: 100%;
     height: 3px;
@@ -106,18 +111,6 @@
     margin: 5px 0;
     transition: 0.4s;
     border-radius: 3px;
-  }
-
-  .hamburger.open .bar1 {
-    transform: rotate(-45deg) translate(-6px, 6px);
-  }
-
-  .hamburger.open .bar2 {
-    opacity: 0;
-  }
-
-  .hamburger.open .bar3 {
-    transform: rotate(45deg) translate(-7px, -7px);
   }
   
   nav {
@@ -169,7 +162,7 @@
     transform: scale(1.1);
   }
 
-  .social-links-mobile {
+  .social-links-mobile, .close-btn {
     display: none;
   }
 
@@ -182,6 +175,18 @@
   @media (max-width: 768px) {
     .hamburger {
       display: block;
+    }
+    
+    .close-btn {
+      display: block;
+      position: absolute;
+      top: 1rem;
+      right: 2rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1003;
     }
 
     nav {
@@ -197,14 +202,17 @@
       gap: 2rem;
       background-color: rgba(14, 16, 21, 0.98);
       backdrop-filter: blur(15px);
-      transform: translateY(-100%);
-      transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
       padding: 0;
-      z-index: 1000;
+      z-index: 1002;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0s linear 0.4s;
     }
 
     nav.open {
-      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.4s ease;
     }
     
     nav a {
