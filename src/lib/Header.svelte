@@ -1,14 +1,5 @@
 <script lang="ts">
   let y = 0;
-  let menuOpen = false;
-
-  function toggleMenu() {
-    menuOpen = !menuOpen;
-  }
-
-  function closeMenu() {
-    menuOpen = false;
-  }
 </script>
 
 <svelte:window bind:scrollY={y} />
@@ -16,37 +7,18 @@
 <header class:scrolled={y > 0}>
   <div class="header-container">
     <div class="logo">
-      <a href="/" on:click={closeMenu}>ICAL</a>
+      <a href="/">ICAL</a>
     </div>
 
-    <button class="hamburger" on:click={toggleMenu} aria-label="Toggle menu">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-    </button>
-
-    <nav class:open={menuOpen}>
-      <button class="close-btn" on:click={closeMenu} aria-label="Close menu">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      </button>
-
-      <a href="#about" on:click={closeMenu}>About</a>
-      <a href="#experience" on:click={closeMenu}>Experience</a>
-      <a href="#projects" on:click={closeMenu}>Projects</a>
-      <a href="#certifications" on:click={closeMenu}>Certifications</a>
-      <a href="#volunteering" on:click={closeMenu}>Volunteering</a>
-      
-      <div class="social-links-mobile">
-        <a href="https://github.com/icaluwu" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/icaluwu" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-        </a>
-      </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#volunteering">Volunteering</a>
     </nav>
 
-    <div class="social-links-desktop">
+    <div class="social-links">
        <a href="https://github.com/icaluwu" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
       </a>
@@ -59,11 +31,11 @@
 
 <style>
   header {
-    position: fixed;
+    position: sticky; /* Keep header at the top */
     top: 0;
     left: 0;
     right: 0;
-    padding: 1rem 2rem;
+    padding: 0.75rem 0.75rem; /* Further reduced padding for mobile */
     background-color: transparent;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     z-index: 1000;
@@ -72,7 +44,7 @@
   header.scrolled {
     background-color: rgba(14, 16, 21, 0.8);
     backdrop-filter: blur(10px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .header-container {
@@ -81,170 +53,95 @@
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    gap: 0.75rem; /* Further reduced gap */
   }
 
   .logo a {
-    font-size: 1.8rem;
+    font-size: 1.4rem; /* Made logo text slightly smaller on mobile */
     font-weight: 700;
     color: #fff;
     text-decoration: none;
     letter-spacing: 1px;
+    flex-shrink: 0; /* Prevent logo from shrinking */
   }
 
-  .hamburger {
-    display: none;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    width: 28px;
-    height: 28px;
-    position: relative;
-    z-index: 1001;
-    padding: 0;
-  }
-
-  .bar {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: #fff;
-    margin: 5px 0;
-    transition: 0.4s;
-    border-radius: 3px;
-  }
-  
   nav {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+    gap: 0.25rem; /* Further reduced gap */
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+  }
+  
+  nav::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari */
   }
 
   nav a {
     color: #e0e0e0;
     text-decoration: none;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.7rem; /* Made font size even smaller */
     transition: color 0.3s ease;
-    position: relative;
-  }
-
-  nav a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: #00bfff;
-    transition: width 0.3s ease;
-  }
-
-  nav a:hover {
-    color: #fff;
+    white-space: nowrap; /* Prevent text wrapping */
+    padding: 0.2rem 0.4rem; /* Adjusted padding */
+    border-radius: 4px;
   }
   
-  nav a:hover::after {
-    width: 100%;
+  nav a:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
-  .social-links-desktop {
+  .social-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 0.5rem; /* Further reduced gap */
+    align-items: center;
   }
 
-  .social-links-desktop a svg {
+  .social-links a svg {
     stroke: #e0e0e0;
+    width: 18px; /* Made icons smaller */
+    height: 18px;
     transition: stroke 0.3s ease, transform 0.3s ease;
   }
 
-  .social-links-desktop a:hover svg {
+  .social-links a:hover svg {
     stroke: #00bfff;
     transform: scale(1.1);
   }
 
-  .social-links-mobile, .close-btn {
-    display: none;
-  }
+  /* --- Desktop Styles --- */
+  @media (min-width: 768px) {
+    header {
+      padding: 1rem 2rem;
+    }
 
-  @media (max-width: 992px) {
+    .header-container {
+      gap: 1rem;
+    }
+
+    .logo a {
+      font-size: 1.8rem;
+    }
+    
     nav {
+      gap: 1rem;
+    }
+
+    nav a {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .social-links {
       gap: 1.5rem;
     }
-  }
 
-  @media (max-width: 768px) {
-    .hamburger {
-      display: block;
-    }
-    
-    .close-btn {
-      display: block;
-      position: absolute;
-      top: 1rem;
-      right: 2rem;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      z-index: 1003;
-    }
-
-    nav {
-      display: flex;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-      background-color: rgba(14, 16, 21, 0.98);
-      backdrop-filter: blur(15px);
-      padding: 0;
-      z-index: 1002;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.4s ease, visibility 0s linear 0.4s;
-    }
-
-    nav.open {
-      opacity: 1;
-      visibility: visible;
-      transition: opacity 0.4s ease;
-    }
-    
-    nav a {
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: #fff;
-    }
-    
-    nav a::after {
-      display: none;
-    }
-
-    .social-links-desktop {
-      display: none;
-    }
-
-    .social-links-mobile {
-      display: flex;
-      gap: 2.5rem;
-      margin-top: 3rem;
-    }
-
-    .social-links-mobile a svg {
-      stroke: #fff;
-      width: 32px;
-      height: 32px;
-      transition: stroke 0.3s ease, transform 0.3s ease;
-    }
-
-    .social-links-mobile a:hover svg {
-      stroke: #00bfff;
-      transform: scale(1.1);
+    .social-links a svg {
+      width: 24px;
+      height: 24px;
     }
   }
 </style>

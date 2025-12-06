@@ -1,43 +1,59 @@
-# Svelte + Vite
+# Portofolio Pribadi - Teuku Vaickal Rizki Irdian
 
-This template should help get you started developing with Svelte in Vite.
+![Svelte](https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00)
+![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white)
 
-## Recommended IDE Setup
+Ini adalah situs web portofolio pribadi untuk **Teuku Vaickal Rizki Irdian**, yang dibangun dengan Svelte, Vite, dan di-hosting di Firebase.
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+## Tentang Proyek
 
-## Need an official Svelte framework?
+Proyek ini adalah aplikasi satu halaman (single-page application) yang dirancang untuk menampilkan keahlian, pengalaman profesional, proyek, dan sertifikasi dari Teuku Vaickal Rizki Irdian. Situs web ini dibuat dengan fokus pada performa, desain modern, dan antarmuka yang responsif.
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+## Fitur Utama
 
-## Technical considerations
+Struktur portofolio ini terdiri dari beberapa komponen utama:
 
-**Why use this over SvelteKit?**
+*   **Header**: Bilah navigasi yang tetap di bagian atas untuk memudahkan navigasi antar bagian.
+*   **Hero**: Bagian pembuka yang menarik dengan pesan selamat datang dan tautan media sosial.
+*   **Tentang Saya**: Bagian yang merinci informasi pribadi dan spesialisasi keahlian.
+*   **Pengalaman**: Garis waktu yang menampilkan riwayat pengalaman kerja profesional.
+*   **Proyek**: Galeri untuk menampilkan proyek-proyek yang pernah dikerjakan, lengkap dengan tautan ke repositori GitHub.
+*   **Sertifikasi**: Daftar sertifikasi dan lisensi yang dimiliki.
+*   **Kegiatan Sukarelawan**: Bagian yang menyoroti pengalaman dalam kegiatan sukarelawan.
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+## Memulai Proyek
 
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+Untuk menjalankan salinan lokal dari proyek ini, ikuti langkah-langkah sederhana berikut.
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
+### Prasyarat
 
-**Why include `.vscode/extensions.json`?**
+*   Node.js (v20 atau yang lebih baru)
+*   npm
 
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
+### Instalasi
 
-**Why enable `checkJs` in the JS template?**
+1.  Clone repositori ini:
+    ```sh
+    git clone https://github.com/username/project-name.git
+    ```
+2.  Instal semua dependensi NPM:
+    ```sh
+    npm install
+    ```
+3.  Jalankan server pengembangan:
+    ```sh
+    npm run dev
+    ```
+    Buka [http://localhost:5173](http://localhost:5173) untuk melihat hasilnya di browser.
 
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
+## Deployment
 
-**Why is HMR not preserving my local component state?**
+Aplikasi ini di-deploy dan di-hosting menggunakan **Firebase Hosting**.
 
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#preservation-of-local-state).
+## Penulis
 
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
+**Teuku Vaickal Rizki Irdian**
 
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
-```
+*   **GitHub**: [icaluwu](https://github.com/icaluwu)
+*   **LinkedIn**: [Teuku Vaickal Rizki Irdian](https://www.linkedin.com/in/icaluwu)
