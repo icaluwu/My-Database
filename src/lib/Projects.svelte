@@ -1,6 +1,13 @@
 <script lang="ts">
   const projects = [
     {
+      name: 'UTYouthMovement',
+      description: 'An organization from United Tractors Teenage for care and health.',
+      image: '/lives/utyouthmovement.png',
+      liveUrl: 'https://utyouthmovement.site/',
+      tech: ['Wordpress Fullstack']
+    },
+    {
       name: 'BantuLegal',
       description: 'A platform to connect people with legal professionals.',
       image: '/lives/bantulegal.png',
