@@ -12,6 +12,7 @@
     { name: 'Strategic SEO', issuer: 'Skillshare', year: '2023', url: 'https://www.coursera.org/account/accomplishments/specialization/7ALDV15YRNVU'},
     { name: 'Search Engine Optimization', issuer: 'UC Davis', year: '2023', url: 'https://www.coursera.org/account/accomplishments/specialization/2XQIAX6Q7ZW9'},
     { name: 'Social Media Optimization', issuer: 'Digitalent', year: '2023', url: 'https://www.linkedin.com/in/icaluwu/details/certifications/'},
+    { name: 'Introduction to Front-End Development', issuer: 'Meta', year: '2026', url: 'https://www.coursera.org/account/accomplishments/verify/KFDINI3WPWQQ/'},
   ];
 </script>
 
